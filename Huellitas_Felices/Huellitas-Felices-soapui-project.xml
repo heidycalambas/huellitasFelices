@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="611ca215-a828-486b-8085-fbd50725fda6" activeEnvironment="Default" name="Huellitas_Felices" resourceRoot="" soapui-version="5.10.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="1ccb1aa5-8091-4f5a-9aa8-3578344113bc" wsaVersion="NONE" name="Application" type="wsdl" bindingName="{huellitas_felices.mascotas}Application" soapVersion="1_1" anonymous="optional" definition="http://0.0.0.0:8000/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://0.0.0.0:8000/?wsdl"><con:part><con:url>http://0.0.0.0:8000/?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="huellitas_felices.mascotas" name="Application" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="huellitas_felices.mascotas" xmlns:s0="models">
+  <wsdl:types>
+    <xs:schema targetNamespace="huellitas_felices.mascotas" elementFormDefault="qualified">
+      <xs:import namespace="models"/>
+      <xs:complexType name="get_all_pets"/>
+      <xs:complexType name="add_pet">
+        <xs:sequence>
+          <xs:element name="refugio_id" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="pet_type" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="age" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="sex" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="size" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="breed" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="city" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="description" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="personality" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="energy_level" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_children" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_pets" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="vaccinated" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="dewormed" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="sterilized" type="xs:boolean" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="add_petResponse">
+        <xs:sequence>
+          <xs:element name="add_petResult" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete_pet">
+        <xs:sequence>
+          <xs:element name="pet_id" type="xs:integer" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delete_petResponse">
+        <xs:sequence>
+          <xs:element name="delete_petResult" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_pet_by_id">
+        <xs:sequence>
+          <xs:element name="pet_id" type="xs:integer" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_pet_by_idResponse">
+        <xs:sequence>
+          <xs:element name="get_pet_by_idResult" type="s0:Pet" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update_pet">
+        <xs:sequence>
+          <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="refugio_id" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="pet_type" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="age" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="sex" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="size" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="breed" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="city" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="description" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="personality" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="energy_level" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_children" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_pets" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="vaccinated" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="dewormed" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="sterilized" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="estado" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update_petResponse">
+        <xs:sequence>
+          <xs:element name="update_petResult" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_all_petsResponse">
+        <xs:sequence>
+          <xs:element name="get_all_petsResult" type="s0:PetArray" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="get_all_pets" type="tns:get_all_pets"/>
+      <xs:element name="add_pet" type="tns:add_pet"/>
+      <xs:element name="add_petResponse" type="tns:add_petResponse"/>
+      <xs:element name="delete_pet" type="tns:delete_pet"/>
+      <xs:element name="delete_petResponse" type="tns:delete_petResponse"/>
+      <xs:element name="get_pet_by_id" type="tns:get_pet_by_id"/>
+      <xs:element name="get_pet_by_idResponse" type="tns:get_pet_by_idResponse"/>
+      <xs:element name="update_pet" type="tns:update_pet"/>
+      <xs:element name="update_petResponse" type="tns:update_petResponse"/>
+      <xs:element name="get_all_petsResponse" type="tns:get_all_petsResponse"/>
+    </xs:schema>
+    <xs:schema targetNamespace="models" elementFormDefault="qualified">
+      <xs:complexType name="Pet">
+        <xs:sequence>
+          <xs:element name="id" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="refugio_id" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="type" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="age" type="xs:integer" minOccurs="0" nillable="true"/>
+          <xs:element name="sex" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="size" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="breed" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="city" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="description" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="personality" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="energy_level" type="xs:string" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_children" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="compatible_pets" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="vaccinated" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="dewormed" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="sterilized" type="xs:boolean" minOccurs="0" nillable="true"/>
+          <xs:element name="status" type="xs:string" minOccurs="0" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PetArray">
+        <xs:sequence>
+          <xs:element name="Pet" type="s0:Pet" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Pet" type="s0:Pet"/>
+      <xs:element name="PetArray" type="s0:PetArray"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="get_all_pets">
+    <wsdl:part name="get_all_pets" element="tns:get_all_pets"/>
+  </wsdl:message>
+  <wsdl:message name="get_all_petsResponse">
+    <wsdl:part name="get_all_petsResponse" element="tns:get_all_petsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="get_pet_by_id">
+    <wsdl:part name="get_pet_by_id" element="tns:get_pet_by_id"/>
+  </wsdl:message>
+  <wsdl:message name="get_pet_by_idResponse">
+    <wsdl:part name="get_pet_by_idResponse" element="tns:get_pet_by_idResponse"/>
+  </wsdl:message>
+  <wsdl:message name="add_pet">
+    <wsdl:part name="add_pet" element="tns:add_pet"/>
+  </wsdl:message>
+  <wsdl:message name="add_petResponse">
+    <wsdl:part name="add_petResponse" element="tns:add_petResponse"/>
+  </wsdl:message>
+  <wsdl:message name="update_pet">
+    <wsdl:part name="update_pet" element="tns:update_pet"/>
+  </wsdl:message>
+  <wsdl:message name="update_petResponse">
+    <wsdl:part name="update_petResponse" element="tns:update_petResponse"/>
+  </wsdl:message>
+  <wsdl:message name="delete_pet">
+    <wsdl:part name="delete_pet" element="tns:delete_pet"/>
+  </wsdl:message>
+  <wsdl:message name="delete_petResponse">
+    <wsdl:part name="delete_petResponse" element="tns:delete_petResponse"/>
+  </wsdl:message>
+  <wsdl:service name="PetService">
+    <wsdl:port name="Application" binding="tns:Application">
+      <wsdlsoap11:address location="http://0.0.0.0:8000/"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:portType name="Application">
+    <wsdl:operation name="get_all_pets" parameterOrder="get_all_pets">
+      <wsdl:input name="get_all_pets" message="tns:get_all_pets"/>
+      <wsdl:output name="get_all_petsResponse" message="tns:get_all_petsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="get_pet_by_id" parameterOrder="get_pet_by_id">
+      <wsdl:input name="get_pet_by_id" message="tns:get_pet_by_id"/>
+      <wsdl:output name="get_pet_by_idResponse" message="tns:get_pet_by_idResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="add_pet" parameterOrder="add_pet">
+      <wsdl:input name="add_pet" message="tns:add_pet"/>
+      <wsdl:output name="add_petResponse" message="tns:add_petResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="update_pet" parameterOrder="update_pet">
+      <wsdl:input name="update_pet" message="tns:update_pet"/>
+      <wsdl:output name="update_petResponse" message="tns:update_petResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="delete_pet" parameterOrder="delete_pet">
+      <wsdl:input name="delete_pet" message="tns:delete_pet"/>
+      <wsdl:output name="delete_petResponse" message="tns:delete_petResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Application" type="tns:Application">
+    <wsdlsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get_all_pets">
+      <wsdlsoap11:operation soapAction="get_all_pets" style="document"/>
+      <wsdl:input name="get_all_pets">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="get_all_petsResponse">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_pet_by_id">
+      <wsdlsoap11:operation soapAction="get_pet_by_id" style="document"/>
+      <wsdl:input name="get_pet_by_id">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="get_pet_by_idResponse">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="add_pet">
+      <wsdlsoap11:operation soapAction="add_pet" style="document"/>
+      <wsdl:input name="add_pet">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="add_petResponse">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_pet">
+      <wsdlsoap11:operation soapAction="update_pet" style="document"/>
+      <wsdl:input name="update_pet">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="update_petResponse">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete_pet">
+      <wsdlsoap11:operation soapAction="delete_pet" style="document"/>
+      <wsdl:input name="delete_pet">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="delete_petResponse">
+        <wsdlsoap11:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://0.0.0.0:8000/</con:endpoint></con:endpoints><con:operation id="fc7218ff-432f-4c40-ab7c-5d328f2eecc0" isOneWay="false" action="add_pet" name="add_pet" bindingOperationName="add_pet" type="Request-Response" outputName="add_petResponse" inputName="add_pet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ccdc12a2-15ca-4572-a651-0e38b2635062" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://0.0.0.0:8000/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:huel="huellitas_felices.mascotas">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <huel:add_pet>\r
+         <!--Optional:-->\r
+         <huel:refugio_id>2</huel:refugio_id>\r
+         <!--Optional:-->\r
+         <huel:name>Lucas</huel:name>\r
+         <!--Optional:-->\r
+         <huel:pet_type>Hamster</huel:pet_type>\r
+         <!--Optional:-->\r
+         <huel:age>2</huel:age>\r
+         <!--Optional:-->\r
+         <huel:sex>Macho</huel:sex>\r
+         <!--Optional:-->\r
+         <huel:size>Pequeno</huel:size>\r
+         <!--Optional:-->\r
+         <huel:breed>Hamster Campbell</huel:breed>\r
+         <!--Optional:-->\r
+         <huel:city>Cali</huel:city>\r
+         <!--Optional:-->\r
+         <huel:description>Pequeno y tierno</huel:description>\r
+         <!--Optional:-->\r
+         <huel:personality>Amigable</huel:personality>\r
+         <!--Optional:-->\r
+         <huel:energy_level>medio</huel:energy_level>\r
+         <!--Optional:-->\r
+         <huel:compatible_children>1</huel:compatible_children>\r
+         <!--Optional:-->\r
+         <huel:compatible_pets>1</huel:compatible_pets>\r
+         <!--Optional:-->\r
+         <huel:vaccinated>1</huel:vaccinated>\r
+         <!--Optional:-->\r
+         <huel:dewormed>0</huel:dewormed>\r
+         <!--Optional:-->\r
+         <huel:sterilized>1</huel:sterilized>\r
+      </huel:add_pet>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="add_pet"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8fbc36f8-f7c7-4ce9-b0e3-a5a5edf3c95c" isOneWay="false" action="delete_pet" name="delete_pet" bindingOperationName="delete_pet" type="Request-Response" outputName="delete_petResponse" inputName="delete_pet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a3faccbe-7c4b-4b27-ab68-27dc4fbfacee" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://0.0.0.0:8000/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:huel="huellitas_felices.mascotas">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <huel:delete_pet>\r
+         <!--Optional:-->\r
+         <huel:pet_id>?</huel:pet_id>\r
+      </huel:delete_pet>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="delete_pet"/></con:call></con:operation><con:operation id="44ebba82-9b40-4ac4-bf34-1d42ad1453a8" isOneWay="false" action="get_all_pets" name="get_all_pets" bindingOperationName="get_all_pets" type="Request-Response" outputName="get_all_petsResponse" inputName="get_all_pets" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="788e2163-6257-4647-9504-b072cdfcbda1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://0.0.0.0:8000/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:huel="huellitas_felices.mascotas">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <huel:get_all_pets/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_all_pets"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="633fe453-6ead-4d95-bc03-3e42bf8c14c2" isOneWay="false" action="get_pet_by_id" name="get_pet_by_id" bindingOperationName="get_pet_by_id" type="Request-Response" outputName="get_pet_by_idResponse" inputName="get_pet_by_id" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1b226279-336a-4781-b76f-f486de1b00ac" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://0.0.0.0:8000/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:huel="huellitas_felices.mascotas">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <huel:get_pet_by_id>\r
+         <!--Optional:-->\r
+         <huel:pet_id>7</huel:pet_id>\r
+      </huel:get_pet_by_id>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="get_pet_by_id"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ce4809af-74a9-4076-9526-2b980651155f" isOneWay="false" action="update_pet" name="update_pet" bindingOperationName="update_pet" type="Request-Response" outputName="update_petResponse" inputName="update_pet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7dc8f3dc-ba39-4988-9cf6-a85bc8b9d57e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://0.0.0.0:8000/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:huel="huellitas_felices.mascotas">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <huel:update_pet>\r
+         <!--Optional:-->\r
+         <huel:id>?</huel:id>\r
+         <!--Optional:-->\r
+         <huel:refugio_id>?</huel:refugio_id>\r
+         <!--Optional:-->\r
+         <huel:name>?</huel:name>\r
+         <!--Optional:-->\r
+         <huel:pet_type>?</huel:pet_type>\r
+         <!--Optional:-->\r
+         <huel:age>?</huel:age>\r
+         <!--Optional:-->\r
+         <huel:sex>?</huel:sex>\r
+         <!--Optional:-->\r
+         <huel:size>?</huel:size>\r
+         <!--Optional:-->\r
+         <huel:breed>?</huel:breed>\r
+         <!--Optional:-->\r
+         <huel:city>?</huel:city>\r
+         <!--Optional:-->\r
+         <huel:description>?</huel:description>\r
+         <!--Optional:-->\r
+         <huel:personality>?</huel:personality>\r
+         <!--Optional:-->\r
+         <huel:energy_level>?</huel:energy_level>\r
+         <!--Optional:-->\r
+         <huel:compatible_children>?</huel:compatible_children>\r
+         <!--Optional:-->\r
+         <huel:compatible_pets>?</huel:compatible_pets>\r
+         <!--Optional:-->\r
+         <huel:vaccinated>?</huel:vaccinated>\r
+         <!--Optional:-->\r
+         <huel:dewormed>?</huel:dewormed>\r
+         <!--Optional:-->\r
+         <huel:sterilized>?</huel:sterilized>\r
+         <!--Optional:-->\r
+         <huel:estado>?</huel:estado>\r
+      </huel:update_pet>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="update_pet"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
