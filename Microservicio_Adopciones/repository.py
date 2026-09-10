@@ -1,19 +1,13 @@
 import pymysql
 
-
-# ==========================================
 # CONFIGURACIÓN DE BASE DE DATOS
-# ==========================================
 
 DB_HOST = "localhost"
 DB_USER = "root"
 DB_PASSWORD = "1003418409"
 DB_NAME = "huellitas_felices"
 
-
-# ==========================================
 # CONEXIÓN A MYSQL
-# ==========================================
 
 def get_connection():
 
@@ -25,10 +19,7 @@ def get_connection():
         cursorclass=pymysql.cursors.DictCursor
     )
 
-
-# ==========================================
 # 1. CREAR SOLICITUD DE ADOPCIÓN
-# ==========================================
 
 def create_adoption(
     usuario_id,
@@ -106,9 +97,7 @@ def create_adoption(
         connection.close()
 
 
-# ==========================================
 # 2. OBTENER TODAS LAS ADOPCIONES
-# ==========================================
 
 def get_all_adoptions():
 
@@ -150,10 +139,7 @@ def get_all_adoptions():
 
         connection.close()
 
-
-# ==========================================
 # 3. OBTENER ADOPCIÓN POR ID
-# ==========================================
 
 def get_adoption_by_id(adoption_id):
 
@@ -202,9 +188,7 @@ def get_adoption_by_id(adoption_id):
         connection.close()
 
 
-# ==========================================
 # 4. ACTUALIZAR ESTADO DE ADOPCIÓN
-# ==========================================
 
 def update_adoption_status(
     adoption_id,
@@ -259,9 +243,7 @@ def update_adoption_status(
         connection.close()
 
 
-# ==========================================
 # 5. PROGRAMAR ENTREVISTA
-# ==========================================
 
 def schedule_interview(
     adoption_id,
