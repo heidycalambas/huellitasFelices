@@ -1,10 +1,10 @@
-from spyne import ServiceBase, rpc
-from spyne import Integer, Unicode, Boolean
+from spyne import ServiceBase, rpc  
+from spyne import Integer, Unicode, Boolean  # Tipos de datos usados en las operaciones
 
-import repository
+import repository  
 
 
-# MICROSERVICIO DE ADOPCIONES
+
 
 class AdoptionService(ServiceBase):
 
@@ -38,6 +38,7 @@ class AdoptionService(ServiceBase):
 
         try:
 
+            # Envía los datos al repositorio para crear la solicitud
             adoption_id = repository.create_adoption(
                 usuario_id,
                 mascota_id,
@@ -50,6 +51,7 @@ class AdoptionService(ServiceBase):
                 responsable
             )
 
+            
             return (
                 "Solicitud de adopción creada "
                 "correctamente. "
@@ -58,6 +60,7 @@ class AdoptionService(ServiceBase):
 
         except Exception as e:
 
+            
             return (
                 "Error al crear la solicitud "
                 f"de adopción: {str(e)}"
@@ -73,6 +76,7 @@ class AdoptionService(ServiceBase):
 
         try:
 
+           
             adoptions = repository.get_all_adoptions()
 
             if not adoptions:
@@ -85,6 +89,7 @@ class AdoptionService(ServiceBase):
                 "SOLICITUDES DE ADOPCIÓN\n\n"
             )
 
+            # Recorre las solicitudes para mostrar sus datos
             for adoption in adoptions:
 
                 resultado += (
@@ -119,10 +124,11 @@ class AdoptionService(ServiceBase):
                     f"-----------------------------------\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
+            
             return (
                 "Error al obtener las adopciones: "
                 f"{str(e)}"
@@ -142,6 +148,7 @@ class AdoptionService(ServiceBase):
 
         try:
 
+            # Busca una adopción específica usando su ID
             adoption = repository.get_adoption_by_id(
                 adoption_id
             )
@@ -153,6 +160,7 @@ class AdoptionService(ServiceBase):
                     f"con ID {adoption_id}."
                 )
 
+            # Organiza los datos de la adopción para mostrarlos
             resultado = (
                 "DETALLE DE LA ADOPCIÓN\n\n"
                 f"ID adopción: "
@@ -191,10 +199,11 @@ class AdoptionService(ServiceBase):
                 f"{adoption['estado']}"
             )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
+            
             return (
                 "Error al consultar la adopción: "
                 f"{str(e)}"
@@ -215,6 +224,7 @@ class AdoptionService(ServiceBase):
 
         try:
 
+            # Actualiza el estado de la solicitud
             updated = repository.update_adoption_status(
                 adoption_id,
                 new_status
@@ -227,6 +237,7 @@ class AdoptionService(ServiceBase):
                     f"con ID {adoption_id}."
                 )
 
+            # Confirma que el estado fue actualizado
             return (
                 f"Estado de la adopción "
                 f"{adoption_id} actualizado "
@@ -235,6 +246,7 @@ class AdoptionService(ServiceBase):
 
         except Exception as e:
 
+            
             return (
                 "Error al actualizar el estado: "
                 f"{str(e)}"
@@ -263,6 +275,7 @@ class AdoptionService(ServiceBase):
 
         try:
 
+            # Envía los datos para programar la entrevista
             scheduled = repository.schedule_interview(
                 adoption_id,
                 interview_date,
@@ -278,6 +291,7 @@ class AdoptionService(ServiceBase):
                     f"con ID {adoption_id}."
                 )
 
+           
             return (
                 f"Entrevista programada correctamente "
                 f"para la adopción {adoption_id}."
@@ -285,6 +299,7 @@ class AdoptionService(ServiceBase):
 
         except Exception as e:
 
+           
             return (
                 "Error al programar la entrevista: "
                 f"{str(e)}"
