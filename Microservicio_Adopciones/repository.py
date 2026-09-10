@@ -1,4 +1,5 @@
-import pymysql
+import pymysql  # Permite trabajar con la base de datos MySQL
+
 
 # CONFIGURACIÓN DE BASE DE DATOS
 
@@ -7,10 +8,11 @@ DB_USER = "root"
 DB_PASSWORD = "1003418409"
 DB_NAME = "huellitas_felices"
 
-# CONEXIÓN A MYSQL
+
 
 def get_connection():
 
+    # Crea y devuelve la conexión con MySQL
     return pymysql.connect(
         host=DB_HOST,
         user=DB_USER,
@@ -18,6 +20,7 @@ def get_connection():
         database=DB_NAME,
         cursorclass=pymysql.cursors.DictCursor
     )
+
 
 # 1. CREAR SOLICITUD DE ADOPCIÓN
 
@@ -33,12 +36,13 @@ def create_adoption(
     responsable
 ):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
 
         with connection.cursor() as cursor:
 
+            # Inserta la nueva solicitud de adopción
             sql = """
                 INSERT INTO adopciones (
                     usuario_id,
@@ -81,32 +85,33 @@ def create_adoption(
                 )
             )
 
-            adoption_id = cursor.lastrowid
+            adoption_id = cursor.lastrowid  
 
-            connection.commit()
+            connection.commit()  # Guarda la solicitud en la base de datos
 
-            return adoption_id
+            return adoption_id  
 
     except Exception:
 
-        connection.rollback()
+        connection.rollback()  # Deshace los cambios si ocurre un error
         raise
 
     finally:
 
-        connection.close()
+        connection.close() 
 
 
 # 2. OBTENER TODAS LAS ADOPCIONES
 
 def get_all_adoptions():
 
-    connection = get_connection()
+    connection = get_connection() 
 
     try:
 
         with connection.cursor() as cursor:
 
+            # Consulta todas las solicitudes y sus datos relacionados
             sql = """
                 SELECT
                     a.id,
@@ -131,24 +136,26 @@ def get_all_adoptions():
                 ORDER BY a.id DESC
             """
 
-            cursor.execute(sql)
+            cursor.execute(sql)  
 
-            return cursor.fetchall()
+            return cursor.fetchall()  # Devuelve todas las adopciones encontradas
 
     finally:
 
-        connection.close()
+        connection.close()  
+
 
 # 3. OBTENER ADOPCIÓN POR ID
 
 def get_adoption_by_id(adoption_id):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
 
         with connection.cursor() as cursor:
 
+            # Busca una solicitud específica por su ID
             sql = """
                 SELECT
                     a.id,
@@ -181,11 +188,11 @@ def get_adoption_by_id(adoption_id):
                 (adoption_id,)
             )
 
-            return cursor.fetchone()
+            return cursor.fetchone()  # Devuelve la solicitud encontrada
 
     finally:
 
-        connection.close()
+        connection.close()  
 
 
 # 4. ACTUALIZAR ESTADO DE ADOPCIÓN
@@ -195,12 +202,13 @@ def update_adoption_status(
     new_status
 ):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
 
         with connection.cursor() as cursor:
 
+            # Primero verifica que la solicitud exista
             cursor.execute(
                 """
                 SELECT id
@@ -213,8 +221,9 @@ def update_adoption_status(
             adoption = cursor.fetchone()
 
             if not adoption:
-                return False
+                return False  # Indica que no se encontró la solicitud
 
+            # Cambia el estado de la solicitud
             sql = """
                 UPDATE adopciones
                 SET estado = %s
@@ -229,18 +238,18 @@ def update_adoption_status(
                 )
             )
 
-            connection.commit()
+            connection.commit()  # Guarda el nuevo estado
 
-            return True
+            return True  # Indica que la actualización fue exitosa
 
     except Exception:
 
-        connection.rollback()
+        connection.rollback()  # Deshace el cambio si ocurre un error
         raise
 
     finally:
 
-        connection.close()
+        connection.close()  
 
 
 # 5. PROGRAMAR ENTREVISTA
@@ -253,12 +262,13 @@ def schedule_interview(
     observations
 ):
 
-    connection = get_connection()
+    connection = get_connection() 
 
     try:
 
         with connection.cursor() as cursor:
 
+            # Verifica que exista la solicitud de adopción
             cursor.execute(
                 """
                 SELECT id
@@ -271,8 +281,9 @@ def schedule_interview(
             adoption = cursor.fetchone()
 
             if not adoption:
-                return False
+                return False  # No permite programar si no existe la adopción
 
+            # Guarda los datos de la entrevista
             sql = """
                 INSERT INTO entrevistas (
                     adopcion_id,
@@ -303,15 +314,15 @@ def schedule_interview(
                 )
             )
 
-            connection.commit()
+            connection.commit()  # Guarda la entrevista
 
-            return True
+            return True  
 
     except Exception:
 
-        connection.rollback()
+        connection.rollback()  
         raise
 
     finally:
 
-        connection.close()
+        connection.close() 
