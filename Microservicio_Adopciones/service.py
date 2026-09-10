@@ -4,16 +4,12 @@ from spyne import Integer, Unicode, Boolean
 import repository
 
 
-# ==========================================
 # MICROSERVICIO DE ADOPCIONES
-# ==========================================
 
 class AdoptionService(ServiceBase):
 
 
-    # ==========================================
     # 1. CREAR SOLICITUD DE ADOPCIÓN
-    # ==========================================
 
     @rpc(
         Integer,
@@ -68,10 +64,8 @@ class AdoptionService(ServiceBase):
             )
 
 
-    # ==========================================
     # 2. OBTENER TODAS LAS ADOPCIONES
-    # ==========================================
-
+    
     @rpc(
         _returns=Unicode
     )
@@ -135,10 +129,8 @@ class AdoptionService(ServiceBase):
             )
 
 
-    # ==========================================
     # 3. OBTENER ADOPCIÓN POR ID
-    # ==========================================
-
+    
     @rpc(
         Integer,
         _returns=Unicode
@@ -209,10 +201,7 @@ class AdoptionService(ServiceBase):
             )
 
 
-    # ==========================================
     # 4. ACTUALIZAR ESTADO
-    # ==========================================
-
     @rpc(
         Integer,
         Unicode,
@@ -252,9 +241,8 @@ class AdoptionService(ServiceBase):
             )
 
 
-    # ==========================================
+
     # 5. PROGRAMAR ENTREVISTA
-    # ==========================================
 
     @rpc(
         Integer,
