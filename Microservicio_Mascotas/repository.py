@@ -1,7 +1,6 @@
-import pymysql
+import pymysql  
 
 
-# CONFIGURACIÓN DE BASE DE DATOS
 
 DB_HOST = "localhost"
 DB_USER = "root"
@@ -12,6 +11,7 @@ DB_NAME = "huellitas_felices"
 # CONEXIÓN A MYSQL
 
 def get_connection():
+    # Crea la conexión con la base de datos
     return pymysql.connect(
         host=DB_HOST,
         user=DB_USER,
@@ -25,11 +25,12 @@ def get_connection():
 
 def search_available_by_city(city):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
-        with connection.cursor() as cursor:
+        with connection.cursor() as cursor:  # Crea el cursor para la consulta
 
+            # Busca mascotas disponibles en la ciudad indicada
             sql = """
                 SELECT
                     id,
@@ -56,23 +57,23 @@ def search_available_by_city(city):
                 ORDER BY nombre ASC
             """
 
-            cursor.execute(sql, (city,))
+            cursor.execute(sql, (city,))  
 
-            return cursor.fetchall()
-
+            return cursor.fetchall()  
     finally:
-        connection.close()
+        connection.close() 
 
 
 # 2. FILTRAR POR TIPO Y EDAD
 
 def filter_by_type_and_age(pet_type, min_age, max_age):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
         with connection.cursor() as cursor:
 
+            # Filtra las mascotas según tipo y rango de edad
             sql = """
                 SELECT
                     id,
@@ -109,10 +110,10 @@ def filter_by_type_and_age(pet_type, min_age, max_age):
                 )
             )
 
-            return cursor.fetchall()
+            return cursor.fetchall()  
 
     finally:
-        connection.close()
+        connection.close() 
 
 
 # 3. BUSCAR MASCOTAS COMPATIBLES
@@ -123,11 +124,12 @@ def find_compatible_pets(
     preferred_size
 ):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
         with connection.cursor() as cursor:
 
+            # Busca mascotas según las condiciones del posible adoptante
             sql = """
                 SELECT
                     id,
@@ -171,10 +173,10 @@ def find_compatible_pets(
                 )
             )
 
-            return cursor.fetchall()
+            return cursor.fetchall()  
 
     finally:
-        connection.close()
+        connection.close()  
 
 
 # 4. RECOMENDAR MASCOTAS
@@ -188,11 +190,12 @@ def recommend_pets(
     accepts_other_pets
 ):
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
         with connection.cursor() as cursor:
 
+            # Busca mascotas que coincidan con las preferencias
             sql = """
                 SELECT
                     id,
@@ -249,22 +252,23 @@ def recommend_pets(
                 )
             )
 
-            return cursor.fetchall()
+            return cursor.fetchall()  
 
     finally:
-        connection.close()
+        connection.close() 
 
 
 # 5. ESTADÍSTICAS DE MASCOTAS
 
 def get_pet_statistics():
 
-    connection = get_connection()
+    connection = get_connection()  
 
     try:
         with connection.cursor() as cursor:
 
-            # Total
+            # Cuenta todas las mascotas registradas
+           
             cursor.execute("""
                 SELECT COUNT(*) AS total
                 FROM mascotas
@@ -272,7 +276,8 @@ def get_pet_statistics():
 
             total = cursor.fetchone()["total"]
 
-            # Disponibles
+            # Cuenta las mascotas que están disponibles
+          
             cursor.execute("""
                 SELECT COUNT(*) AS total
                 FROM mascotas
@@ -281,7 +286,8 @@ def get_pet_statistics():
 
             available = cursor.fetchone()["total"]
 
-            # Adoptadas
+            # Cuenta las mascotas que ya fueron adoptadas
+    
             cursor.execute("""
                 SELECT COUNT(*) AS total
                 FROM mascotas
@@ -290,7 +296,8 @@ def get_pet_statistics():
 
             adopted = cursor.fetchone()["total"]
 
-            # Perros
+            # Cuenta el total de perros
+        
             cursor.execute("""
                 SELECT COUNT(*) AS total
                 FROM mascotas
@@ -299,7 +306,8 @@ def get_pet_statistics():
 
             dogs = cursor.fetchone()["total"]
 
-            # Gatos
+            # Cuenta el total de gatos
+          
             cursor.execute("""
                 SELECT COUNT(*) AS total
                 FROM mascotas
@@ -308,7 +316,8 @@ def get_pet_statistics():
 
             cats = cursor.fetchone()["total"]
 
-            # Por tipo
+            # Agrupa las mascotas según su tipo
+       
             cursor.execute("""
                 SELECT
                     tipo,
@@ -320,7 +329,8 @@ def get_pet_statistics():
 
             by_type = cursor.fetchall()
 
-            # Por estado
+            # Agrupa las mascotas según su estado
+       
             cursor.execute("""
                 SELECT
                     estado,
@@ -332,6 +342,7 @@ def get_pet_statistics():
 
             by_status = cursor.fetchall()
 
+            # Guarda todas las estadísticas para devolverlas juntas
             return {
                 "total": total,
                 "available": available,
@@ -343,4 +354,4 @@ def get_pet_statistics():
             }
 
     finally:
-        connection.close()
+        connection.close() 
