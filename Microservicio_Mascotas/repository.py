@@ -1,9 +1,7 @@
 import pymysql
 
 
-# ==========================================
 # CONFIGURACIÓN DE BASE DE DATOS
-# ==========================================
 
 DB_HOST = "localhost"
 DB_USER = "root"
@@ -11,9 +9,7 @@ DB_PASSWORD = "1003418409"
 DB_NAME = "huellitas_felices"
 
 
-# ==========================================
 # CONEXIÓN A MYSQL
-# ==========================================
 
 def get_connection():
     return pymysql.connect(
@@ -25,9 +21,7 @@ def get_connection():
     )
 
 
-# ==========================================
 # 1. BUSCAR MASCOTAS DISPONIBLES POR CIUDAD
-# ==========================================
 
 def search_available_by_city(city):
 
@@ -70,9 +64,7 @@ def search_available_by_city(city):
         connection.close()
 
 
-# ==========================================
 # 2. FILTRAR POR TIPO Y EDAD
-# ==========================================
 
 def filter_by_type_and_age(pet_type, min_age, max_age):
 
@@ -123,9 +115,7 @@ def filter_by_type_and_age(pet_type, min_age, max_age):
         connection.close()
 
 
-# ==========================================
 # 3. BUSCAR MASCOTAS COMPATIBLES
-# ==========================================
 
 def find_compatible_pets(
     has_children,
@@ -187,9 +177,7 @@ def find_compatible_pets(
         connection.close()
 
 
-# ==========================================
 # 4. RECOMENDAR MASCOTAS
-# ==========================================
 
 def recommend_pets(
     preferred_type,
@@ -267,9 +255,7 @@ def recommend_pets(
         connection.close()
 
 
-# ==========================================
 # 5. ESTADÍSTICAS DE MASCOTAS
-# ==========================================
 
 def get_pet_statistics():
 
