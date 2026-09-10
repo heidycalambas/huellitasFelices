@@ -1,7 +1,7 @@
-from spyne import ServiceBase, rpc
-from spyne import Integer, Unicode, Boolean
+from spyne import ServiceBase, rpc  
+from spyne import Integer, Unicode, Boolean  
 
-import repository
+import repository  # Permite acceder a las consultas de la base de datos
 
 
 # MICROSERVICIO DE MASCOTAS
@@ -21,6 +21,7 @@ class PetService(ServiceBase):
 
         try:
 
+            # Consulta las mascotas disponibles en la ciudad
             pets = repository.search_available_by_city(city)
 
             if not pets:
@@ -33,6 +34,7 @@ class PetService(ServiceBase):
                 f"MASCOTAS DISPONIBLES EN {city}\n\n"
             )
 
+            # Recorre las mascotas para mostrar sus datos
             for pet in pets:
 
                 resultado += (
@@ -60,7 +62,7 @@ class PetService(ServiceBase):
                     f"-----------------------------------\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
@@ -86,6 +88,7 @@ class PetService(ServiceBase):
 
         try:
 
+            # Aplica el filtro de tipo y rango de edad
             pets = repository.filter_by_type_and_age(
                 pet_type,
                 min_age,
@@ -102,6 +105,7 @@ class PetService(ServiceBase):
                 "MASCOTAS FILTRADAS\n\n"
             )
 
+            # Recorre los resultados para mostrarlos
             for pet in pets:
 
                 resultado += (
@@ -117,7 +121,7 @@ class PetService(ServiceBase):
                     f"-----------------------------------\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
@@ -145,6 +149,7 @@ class PetService(ServiceBase):
 
         try:
 
+            # Busca mascotas según las condiciones del usuario
             pets = repository.find_compatible_pets(
                 has_children,
                 has_other_pets,
@@ -161,6 +166,7 @@ class PetService(ServiceBase):
                 "MASCOTAS COMPATIBLES\n\n"
             )
 
+            # Recorre las mascotas compatibles
             for pet in pets:
 
                 resultado += (
@@ -179,7 +185,7 @@ class PetService(ServiceBase):
                     f"-----------------------------------\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
@@ -214,6 +220,7 @@ class PetService(ServiceBase):
 
         try:
 
+            # Busca mascotas según las preferencias indicadas
             pets = repository.recommend_pets(
                 preferred_type,
                 preferred_size,
@@ -233,6 +240,7 @@ class PetService(ServiceBase):
                 "RECOMENDACIONES DE MASCOTAS\n\n"
             )
 
+            # Recorre las mascotas recomendadas
             for pet in pets:
 
                 resultado += (
@@ -255,7 +263,7 @@ class PetService(ServiceBase):
                     f"-----------------------------------\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
@@ -276,6 +284,7 @@ class PetService(ServiceBase):
 
         try:
 
+            # Obtiene las estadísticas desde el repositorio
             statistics = repository.get_pet_statistics()
 
             resultado = (
@@ -293,6 +302,7 @@ class PetService(ServiceBase):
                 f"MASCOTAS POR TIPO\n"
             )
 
+            # Agrega las cantidades de cada tipo
             for item in statistics["by_type"]:
 
                 resultado += (
@@ -304,6 +314,7 @@ class PetService(ServiceBase):
                 "\nMASCOTAS POR ESTADO\n"
             )
 
+            # Agrega las cantidades de cada estado
             for item in statistics["by_status"]:
 
                 resultado += (
@@ -311,7 +322,7 @@ class PetService(ServiceBase):
                     f"{item['cantidad']}\n"
                 )
 
-            return resultado
+            return resultado  
 
         except Exception as e:
 
