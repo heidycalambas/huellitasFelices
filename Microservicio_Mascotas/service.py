@@ -4,16 +4,14 @@ from spyne import Integer, Unicode, Boolean
 import repository
 
 
-# ==========================================
 # MICROSERVICIO DE MASCOTAS
-# ==========================================
 
 class PetService(ServiceBase):
 
 
-    # ==========================================
+
     # 1. BUSCAR MASCOTAS DISPONIBLES POR CIUDAD
-    # ==========================================
+
 
     @rpc(
         Unicode,
@@ -69,9 +67,9 @@ class PetService(ServiceBase):
             return f"Error al buscar mascotas: {str(e)}"
 
 
-    # ==========================================
+
     # 2. FILTRAR POR TIPO Y EDAD
-    # ==========================================
+
 
     @rpc(
         Unicode,
@@ -128,9 +126,9 @@ class PetService(ServiceBase):
             )
 
 
-    # ==========================================
+
     # 3. BUSCAR MASCOTAS COMPATIBLES
-    # ==========================================
+
 
     @rpc(
         Boolean,
@@ -191,9 +189,9 @@ class PetService(ServiceBase):
             )
 
 
-    # ==========================================
+
     # 4. RECOMENDAR MASCOTAS
-    # ==========================================
+
 
     @rpc(
         Unicode,
@@ -267,9 +265,9 @@ class PetService(ServiceBase):
             )
 
 
-    # ==========================================
+
     # 5. ESTADÍSTICAS
-    # ==========================================
+
 
     @rpc(
         _returns=Unicode
